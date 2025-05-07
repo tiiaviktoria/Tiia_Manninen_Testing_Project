@@ -1,46 +1,52 @@
-
-#******************** Settings ************************
+****************************** Settings ******************************
 
 *** Settings ***
-
-# TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
-
-Documentation	
+Documentation     Test cases for user registration with valid and invalid credentials.
 
 # TODO: Write Precondition, Postcondition, Tags
+Pre Condition     User is logged out and on the registration page.
+Post Condition    Account is created for valid data / Error message shown for invalid data.
+Tags              registration, positive, negative, gitlab
 
-Pre Condition	
-Post Condition	
-Tags
-
-#******************* Common Variables ********************
+************************ Common Variables ****************************
 
 *** Variables ***
-
-# NOTE: Please Remove your login credential before uploading Assignments
-
-# TODO: Write Registration field variables
+# NOTE: Please remove your login credential before uploading Assignments
 
 LoginUrl = https://gitlab.com/users/sign_up
+ValidUsername = testuser123
+ValidEmail = testuser123@example.com
+ValidPassword = StrongPassw0rd!
 
+InvalidEmail = invalidemail@com
+ExistingUsername = testuser123  # Assume this already exists
 
-
-#******************** Test Cases *************************
+************************** Test Cases *******************************
 
 *** Test Case ***
+TC01_Successful_Registration
+    [Documentation]    User registers successfully with valid credentials
+    Open Browser    ${LoginUrl}    chrome
+    Input Text    username_field    ${ValidUsername}
+    Input Text    email_field       ${ValidEmail}
+    Input Text    password_field    ${ValidPassword}
+    Click Button   register_button
+    Page Should Contain    Welcome to GitLab
 
-# TODO: Write Positive and Negative Test Cases and Test Process steps (Think about possible test cases)
+TC02_Registration_With_Empty_Password
+    [Documentation]    Registration should fail with empty password
+    Open Browser    ${LoginUrl}    chrome
+    Input Text    username_field    ${ValidUsername}
+    Input Text    email_field       ${ValidEmail}
+    Leave Field Empty    password_field
+    Click Button   register_button
+    Page Should Contain    Password is required
 
-# Positive Test examples are below write test process steps for each below test case
-
-	Register user with valid username and password 
-	- Remember credentials which you are going to use for whole application testing 
-
-# Negative Test examples keywords are below write test process steps for each below test case 
-
-	Register user with same above username,
-		...empty password,
-		...invalid email,
-		...Without recaptcha,
-
-
+TC03_Registration_With_Invalid_Email
+    [Documentation]    Registration should fail with invalid email format
+    Open Browser    ${LoginUrl}    chrome
+    Input Text    username_field    ${ValidUsername}
+    Input Text    email_field       ${InvalidEmail}
+    Input Text    password_field    ${ValidPassword}
+    Click Button   register_button
+    Page Should Contain    Please enter a valid email

@@ -1,44 +1,92 @@
+# Project CRUD Operations Test Plan
 
-#******************** Settings ************************
+## **Settings**
 
-*** Settings ***
+**Documentation:**  
+This test plan covers CRUD (Create, Read, Update, Delete) operations for managing projects. It includes testing the creation, updating, deletion, and validation of project actions within the application.
 
-# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+**Pre-condition:**  
+- User must be logged into the application.
+- User must have permission to create and modify projects.
 
-Documentation	
+**Post-condition:**  
+- Projects are successfully created, updated, or deleted.
+- Error messages are shown appropriately when a project already exists or an invalid action is performed.
 
-# TODO: Write Precondition, Postcondition, Tags
+**Tags:**  
+- CRUD
+- Automation
+- Testing
 
-Pre Condition	 
-Post Condition	
-Tags
+---
 
-#******************* Common Variables ********************
+## **Variables**
 
-*** Variables ***
+- **Project Name:** "First project"
+- **Template Project Name:** "Template Project"
 
-# NOTE: Please Remove your login credential before uploading Assignments
+---
 
-# TODO: Write Project creation field variables
+## **Test Cases**
 
+### **Positive Test Cases**
 
+#### 1. Create Blank Project
+- **Test Case Description:** Test if a blank project can be created successfully.
+- **Test Steps:**
+  1. Navigate to the "Create Project" page.
+  2. Leave the project name field blank.
+  3. Click on the "Create Project" button.
+- **Expected Result:** A blank project is created without any errors.
 
-#******************** Test Cases *************************
+#### 2. Create Template Project
+- **Test Case Description:** Test if a template project can be created.
+- **Test Steps:**
+  1. Navigate to the "Create Project" page.
+  2. Enter the project name as "Template Project".
+  3. Click on the "Create Project" button.
+- **Expected Result:** A project named "Template Project" is created successfully.
 
-*** Test Case ***
+#### 3. Update Template Project Name
+- **Test Case Description:** Test if the name of the "Template Project" can be updated successfully.
+- **Test Steps:**
+  1. Navigate to the "Template Project" detail page.
+  2. Click the "Edit" button.
+  3. Update the project name to "Updated Template Project".
+  4. Click the "Save" button.
+- **Expected Result:** The project name is successfully updated to "Updated Template Project".
 
-# TODO: Write Positive and Negative Test Cases and Test Process steps
+#### 4. Delete Template Project
+- **Test Case Description:** Test if the "Template Project" can be deleted successfully.
+- **Test Steps:**
+  1. Navigate to the "Template Project" detail page.
+  2. Click the "Delete" button.
+  3. Confirm the deletion action.
+- **Expected Result:** The "Template Project" is successfully deleted.
 
-# Positive Test examples are below write test process steps for each below test case
+#### 5. Validate Project Creation Message
+- **Test Case Description:** Validate that the success message appears after creating a project.
+- **Test Steps:**
+  1. Create a project with the name "First project".
+  2. Check the success message displayed after creation.
+- **Expected Result:** The system shows the message: "Project 'First project' was successfully created."
 
-	Create blank project
-	Create template project 
-	Update name of template project
-	Delete template project
-	Valide that message is showing Project 'First project ' was successfully created.
+---
 
-# Negative Test examples are below write test process steps for each below test case
+### **Negative Test Cases**
 
-	Create a blank project with the previous same name
+#### 1. Create Project with Same Name
+- **Test Case Description:** Test if the application prevents creating a project with the same name as an existing project.
+- **Test Steps:**
+  1. Create a project named "First project".
+  2. Try creating another project with the same name, "First project".
+- **Expected Result:** The system shows an error message: "A project with the name 'First project' already exists."
 
+---
+
+## **Test Execution**
+
+Once the above test cases are defined, they can be executed either manually or through automated testing frameworks like Selenium or Cypress. These frameworks help simulate user actions and validate the results against the expected outcomes.
+
+---
 
