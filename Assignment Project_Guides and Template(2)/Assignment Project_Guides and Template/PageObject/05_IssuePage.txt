@@ -1,35 +1,86 @@
+# Issue CRUD Operations Test Plan
 
-#******************** Settings ************************
+## **Settings**
 
-*** Settings ***
-Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+**Documentation:**  
+This test plan covers CRUD (Create, Read, Update, Delete) operations for managing issues in the application. The test cases include creating an issue, updating an issue name, creating a second issue with the updated name, and deleting the issue.
 
-# TODO: Write Precondition and Postcondition, Tags 
+**Pre-condition:**  
+- The user must be logged into the application.
+- The user must have permissions to create, update, and delete issues.
+- The project to which the issue belongs must already be created by the user before running the tests.
 
-Pre Condition	Tips: Project must be created by the user before 
-Post Condition	
-Tags
+**Post-condition:**  
+- Issues are successfully created, updated, or deleted.
+- Any error or success messages are displayed appropriately based on the actions performed.
 
-#******************* Common Variables ********************
+**Tags:**  
+- CRUD
+- Issue Management
+- Testing
 
+---
 
-*** Variables ***
+## **Variables**
 
-# NOTE: Please Remove your login credential before uploading Assignments
+- **Issue Name:** "First Issue"
+- **Updated Issue Name:** "Updated First Issue"
 
-# TODO: Write Issue creation field variables, Updated name of the issue
+---
 
+## **Test Cases**
 
+### **Positive Test Cases**
 
-#******************** Test Cases *************************
+#### 1. Create Issue
+- **Test Case Description:** Test if a new issue can be created successfully.
+- **Test Steps:**
+  1. Navigate to the "Create Issue" page.
+  2. Enter the issue name as "First Issue".
+  3. Select the relevant project.
+  4. Click the "Create Issue" button.
+- **Expected Result:** A new issue named "First Issue" is created successfully.
 
-*** Test Case ***
+#### 2. Update Name of Issue
+- **Test Case Description:** Test if the name of an issue can be updated successfully.
+- **Test Steps:**
+  1. Navigate to the issue detail page for "First Issue".
+  2. Click the "Edit" button.
+  3. Change the issue name to "Updated First Issue".
+  4. Click the "Save" button.
+- **Expected Result:** The issue name is updated to "Updated First Issue" successfully.
 
-# TODO: Write Positive Test Cases and Test Process steps
+#### 3. Create Second Issue with the Previous Updated Name
+- **Test Case Description:** Test if a second issue can be created with the updated name of an existing issue.
+- **Test Steps:**
+  1. Navigate to the "Create Issue" page.
+  2. Enter the issue name as "Updated First Issue" (the updated name from the previous test).
+  3. Select the relevant project.
+  4. Click the "Create Issue" button.
+- **Expected Result:** A new issue named "Updated First Issue" is created successfully.
 
-# Positive Test examples are below write test process steps for each below test case
+#### 4. Delete First Issue
+- **Test Case Description:** Test if the "First Issue" can be deleted successfully.
+- **Test Steps:**
+  1. Navigate to the issue detail page for "First Issue".
+  2. Click the "Delete" button.
+  3. Confirm the deletion action.
+- **Expected Result:** The "First Issue" is deleted successfully.
 
-	Create issue,
- 	Update name of issue, 
-	Create second issue with privious updated name
-    Delete first issue
+---
+
+### **Negative Test Cases**
+
+#### 1. Create Issue with the Same Updated Name
+- **Test Case Description:** Test if the application prevents the creation of an issue with the same name as an already existing issue.
+- **Test Steps:**
+  1. Try to create an issue with the name "Updated First Issue" (which already exists from previous tests).
+- **Expected Result:** The system displays an error message: "An issue with the name 'Updated First Issue' already exists."
+
+---
+
+## **Test Execution**
+
+Once the above test cases are defined, they can be executed either manually or through automated testing frameworks like Selenium or Cypress. These frameworks help simulate user actions and validate the results against the expected outcomes.
+
+---
